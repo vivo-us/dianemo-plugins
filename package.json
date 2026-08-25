@@ -1,0 +1,50 @@
+{
+  "name": "dianemo-plugins",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Integration plugins for dianemo — one published package per external API",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build:kit && npm run build:plugins",
+    "check": "npm run check --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+    "lint": "eslint packages",
+    "format": "prettier --check \"packages/*/{src,test}/**/*.ts\" \"test/**/*.ts\" \"scripts/*.mjs\" \"docs/*.md\" \"packages/*/docs/*.md\" \"packages/*/README.md\" README.md CLAUDE.md \".claude/skills/**/*.md\"",
+    "format:fix": "prettier --write \"packages/*/{src,test}/**/*.ts\" \"test/**/*.ts\" \"scripts/*.mjs\" \"docs/*.md\" \"packages/*/docs/*.md\" \"packages/*/README.md\" README.md CLAUDE.md \".claude/skills/**/*.md\"",
+    "test": "vitest run --typecheck",
+    "build:kit": "npm run build -w @dianemo/plugin-kit",
+    "build:plugins": "npm run build --workspace-root=false --workspaces --if-present",
+    "sort-imports": "node scripts/sort-imports.mjs --dir packages && node scripts/sort-imports.mjs --dir test",
+    "sort-imports:check": "node scripts/sort-imports.mjs --check --dir packages && node scripts/sort-imports.mjs --check --dir test",
+    "exports": "node scripts/generate-exports.mjs",
+    "exports:check": "node scripts/generate-exports.mjs --check",
+    "verify:pack": "node scripts/verify-package.mjs",
+    "verify:readme": "node scripts/verify-readme-examples.mjs"
+  },
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@dianemo/backend-redis": "^1.0.0",
+    "@dianemo/core": "^1.0.0",
+    "@eslint/js": "^9.39.4",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/luxon": "^3.7.4",
+    "@types/node": "^25.9.2",
+    "eslint": "^9.39.4",
+    "ioredis": "^5.11.1",
+    "prettier": "^3.8.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0",
+    "vitest": "^3.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git"
+  }
+}

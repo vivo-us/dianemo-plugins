@@ -1,0 +1,233 @@
+{
+  "name": "@dianemo/plugin-shopify",
+  "version": "1.0.0",
+  "description": "Shopify Admin API plugin — GraphQL and REST sub-clients with separate rate limits",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/bulkOperation": {
+      "types": "./dist/requests/bulkOperation/index.d.ts",
+      "default": "./dist/requests/bulkOperation/index.js"
+    },
+    "./requests/companies": {
+      "types": "./dist/requests/companies/index.d.ts",
+      "default": "./dist/requests/companies/index.js"
+    },
+    "./requests/companyContacts": {
+      "types": "./dist/requests/companyContacts/index.d.ts",
+      "default": "./dist/requests/companyContacts/index.js"
+    },
+    "./requests/companyLocations": {
+      "types": "./dist/requests/companyLocations/index.d.ts",
+      "default": "./dist/requests/companyLocations/index.js"
+    },
+    "./requests/customers": {
+      "types": "./dist/requests/customers/index.d.ts",
+      "default": "./dist/requests/customers/index.js"
+    },
+    "./requests/draftOrders": {
+      "types": "./dist/requests/draftOrders/index.d.ts",
+      "default": "./dist/requests/draftOrders/index.js"
+    },
+    "./requests/fulfillmentOrders": {
+      "types": "./dist/requests/fulfillmentOrders/index.d.ts",
+      "default": "./dist/requests/fulfillmentOrders/index.js"
+    },
+    "./requests/handleGraphQLRequest": {
+      "types": "./dist/requests/handleGraphQLRequest.d.ts",
+      "default": "./dist/requests/handleGraphQLRequest.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/inventory": {
+      "types": "./dist/requests/inventory/index.d.ts",
+      "default": "./dist/requests/inventory/index.js"
+    },
+    "./requests/metafields": {
+      "types": "./dist/requests/metafields/index.d.ts",
+      "default": "./dist/requests/metafields/index.js"
+    },
+    "./requests/orders": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/pricing": {
+      "types": "./dist/requests/pricing/index.d.ts",
+      "default": "./dist/requests/pricing/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/webhooks": {
+      "types": "./dist/requests/webhooks/index.d.ts",
+      "default": "./dist/requests/webhooks/index.js"
+    },
+    "./requests/bulkOperation/index": {
+      "types": "./dist/requests/bulkOperation/index.d.ts",
+      "default": "./dist/requests/bulkOperation/index.js"
+    },
+    "./requests/bulkOperation/types": {
+      "types": "./dist/requests/bulkOperation/types.d.ts",
+      "default": "./dist/requests/bulkOperation/types.js"
+    },
+    "./requests/bulkOperation/utilities": {
+      "types": "./dist/requests/bulkOperation/utilities.d.ts",
+      "default": "./dist/requests/bulkOperation/utilities.js"
+    },
+    "./requests/companies/index": {
+      "types": "./dist/requests/companies/index.d.ts",
+      "default": "./dist/requests/companies/index.js"
+    },
+    "./requests/companies/types": {
+      "types": "./dist/requests/companies/types.d.ts",
+      "default": "./dist/requests/companies/types.js"
+    },
+    "./requests/companyContacts/index": {
+      "types": "./dist/requests/companyContacts/index.d.ts",
+      "default": "./dist/requests/companyContacts/index.js"
+    },
+    "./requests/companyContacts/types": {
+      "types": "./dist/requests/companyContacts/types.d.ts",
+      "default": "./dist/requests/companyContacts/types.js"
+    },
+    "./requests/companyLocations/index": {
+      "types": "./dist/requests/companyLocations/index.d.ts",
+      "default": "./dist/requests/companyLocations/index.js"
+    },
+    "./requests/companyLocations/types": {
+      "types": "./dist/requests/companyLocations/types.d.ts",
+      "default": "./dist/requests/companyLocations/types.js"
+    },
+    "./requests/customers/index": {
+      "types": "./dist/requests/customers/index.d.ts",
+      "default": "./dist/requests/customers/index.js"
+    },
+    "./requests/customers/types": {
+      "types": "./dist/requests/customers/types.d.ts",
+      "default": "./dist/requests/customers/types.js"
+    },
+    "./requests/draftOrders/index": {
+      "types": "./dist/requests/draftOrders/index.d.ts",
+      "default": "./dist/requests/draftOrders/index.js"
+    },
+    "./requests/draftOrders/types": {
+      "types": "./dist/requests/draftOrders/types.d.ts",
+      "default": "./dist/requests/draftOrders/types.js"
+    },
+    "./requests/fulfillmentOrders/index": {
+      "types": "./dist/requests/fulfillmentOrders/index.d.ts",
+      "default": "./dist/requests/fulfillmentOrders/index.js"
+    },
+    "./requests/fulfillmentOrders/types": {
+      "types": "./dist/requests/fulfillmentOrders/types.d.ts",
+      "default": "./dist/requests/fulfillmentOrders/types.js"
+    },
+    "./requests/inventory/index": {
+      "types": "./dist/requests/inventory/index.d.ts",
+      "default": "./dist/requests/inventory/index.js"
+    },
+    "./requests/inventory/types": {
+      "types": "./dist/requests/inventory/types.d.ts",
+      "default": "./dist/requests/inventory/types.js"
+    },
+    "./requests/metafields/index": {
+      "types": "./dist/requests/metafields/index.d.ts",
+      "default": "./dist/requests/metafields/index.js"
+    },
+    "./requests/metafields/types": {
+      "types": "./dist/requests/metafields/types.d.ts",
+      "default": "./dist/requests/metafields/types.js"
+    },
+    "./requests/orders/index": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/orders/types": {
+      "types": "./dist/requests/orders/types.d.ts",
+      "default": "./dist/requests/orders/types.js"
+    },
+    "./requests/pricing/index": {
+      "types": "./dist/requests/pricing/index.d.ts",
+      "default": "./dist/requests/pricing/index.js"
+    },
+    "./requests/pricing/types": {
+      "types": "./dist/requests/pricing/types.d.ts",
+      "default": "./dist/requests/pricing/types.js"
+    },
+    "./requests/utils/graphQLTypeName": {
+      "types": "./dist/requests/utils/graphQLTypeName.d.ts",
+      "default": "./dist/requests/utils/graphQLTypeName.js"
+    },
+    "./requests/utils/listArguments": {
+      "types": "./dist/requests/utils/listArguments.d.ts",
+      "default": "./dist/requests/utils/listArguments.js"
+    },
+    "./requests/utils/queryCost": {
+      "types": "./dist/requests/utils/queryCost.d.ts",
+      "default": "./dist/requests/utils/queryCost.js"
+    },
+    "./requests/utils/shopifyIdFormatter": {
+      "types": "./dist/requests/utils/shopifyIdFormatter.d.ts",
+      "default": "./dist/requests/utils/shopifyIdFormatter.js"
+    },
+    "./requests/webhooks/index": {
+      "types": "./dist/requests/webhooks/index.d.ts",
+      "default": "./dist/requests/webhooks/index.js"
+    },
+    "./requests/webhooks/types": {
+      "types": "./dist/requests/webhooks/types.d.ts",
+      "default": "./dist/requests/webhooks/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "shopify",
+    "graphql",
+    "ecommerce",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-shopify"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

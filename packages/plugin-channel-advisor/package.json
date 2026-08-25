@@ -1,0 +1,278 @@
+{
+  "name": "@dianemo/plugin-channel-advisor",
+  "version": "1.0.0",
+  "description": "ChannelAdvisor plugin — listings, orders, and fulfillment",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/auth": {
+      "types": "./dist/requests/auth/index.d.ts",
+      "default": "./dist/requests/auth/index.js"
+    },
+    "./requests/clientName": {
+      "types": "./dist/requests/clientName.d.ts",
+      "default": "./dist/requests/clientName.js"
+    },
+    "./requests/distributionCenters": {
+      "types": "./dist/requests/distributionCenters/index.d.ts",
+      "default": "./dist/requests/distributionCenters/index.js"
+    },
+    "./requests/handleCaRequest": {
+      "types": "./dist/requests/handleCaRequest.d.ts",
+      "default": "./dist/requests/handleCaRequest.js"
+    },
+    "./requests/handleQueryOptions": {
+      "types": "./dist/requests/handleQueryOptions.d.ts",
+      "default": "./dist/requests/handleQueryOptions.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/odata": {
+      "types": "./dist/requests/odata.d.ts",
+      "default": "./dist/requests/odata.js"
+    },
+    "./requests/orders": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/products": {
+      "types": "./dist/requests/products/index.d.ts",
+      "default": "./dist/requests/products/index.js"
+    },
+    "./requests/profiles": {
+      "types": "./dist/requests/profiles/index.d.ts",
+      "default": "./dist/requests/profiles/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/auth/index": {
+      "types": "./dist/requests/auth/index.d.ts",
+      "default": "./dist/requests/auth/index.js"
+    },
+    "./requests/auth/types": {
+      "types": "./dist/requests/auth/types.d.ts",
+      "default": "./dist/requests/auth/types.js"
+    },
+    "./requests/distributionCenters/index": {
+      "types": "./dist/requests/distributionCenters/index.d.ts",
+      "default": "./dist/requests/distributionCenters/index.js"
+    },
+    "./requests/distributionCenters/types": {
+      "types": "./dist/requests/distributionCenters/types.d.ts",
+      "default": "./dist/requests/distributionCenters/types.js"
+    },
+    "./requests/orders/customFields": {
+      "types": "./dist/requests/orders/customFields/index.d.ts",
+      "default": "./dist/requests/orders/customFields/index.js"
+    },
+    "./requests/orders/fulfillments": {
+      "types": "./dist/requests/orders/fulfillments/index.d.ts",
+      "default": "./dist/requests/orders/fulfillments/index.js"
+    },
+    "./requests/orders/index": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/orders/shipments": {
+      "types": "./dist/requests/orders/shipments/index.d.ts",
+      "default": "./dist/requests/orders/shipments/index.js"
+    },
+    "./requests/orders/shippingRates": {
+      "types": "./dist/requests/orders/shippingRates/index.d.ts",
+      "default": "./dist/requests/orders/shippingRates/index.js"
+    },
+    "./requests/orders/types": {
+      "types": "./dist/requests/orders/types.d.ts",
+      "default": "./dist/requests/orders/types.js"
+    },
+    "./requests/products/attributes": {
+      "types": "./dist/requests/products/attributes/index.d.ts",
+      "default": "./dist/requests/products/attributes/index.js"
+    },
+    "./requests/products/bulkUpload": {
+      "types": "./dist/requests/products/bulkUpload/index.d.ts",
+      "default": "./dist/requests/products/bulkUpload/index.js"
+    },
+    "./requests/products/bundleComponents": {
+      "types": "./dist/requests/products/bundleComponents/index.d.ts",
+      "default": "./dist/requests/products/bundleComponents/index.js"
+    },
+    "./requests/products/children": {
+      "types": "./dist/requests/products/children/index.d.ts",
+      "default": "./dist/requests/products/children/index.js"
+    },
+    "./requests/products/dcQuantities": {
+      "types": "./dist/requests/products/dcQuantities/index.d.ts",
+      "default": "./dist/requests/products/dcQuantities/index.js"
+    },
+    "./requests/products/images": {
+      "types": "./dist/requests/products/images/index.d.ts",
+      "default": "./dist/requests/products/images/index.js"
+    },
+    "./requests/products/index": {
+      "types": "./dist/requests/products/index.d.ts",
+      "default": "./dist/requests/products/index.js"
+    },
+    "./requests/products/labels": {
+      "types": "./dist/requests/products/labels/index.d.ts",
+      "default": "./dist/requests/products/labels/index.js"
+    },
+    "./requests/products/types": {
+      "types": "./dist/requests/products/types.d.ts",
+      "default": "./dist/requests/products/types.js"
+    },
+    "./requests/profiles/index": {
+      "types": "./dist/requests/profiles/index.d.ts",
+      "default": "./dist/requests/profiles/index.js"
+    },
+    "./requests/profiles/types": {
+      "types": "./dist/requests/profiles/types.d.ts",
+      "default": "./dist/requests/profiles/types.js"
+    },
+    "./requests/orders/customFields/index": {
+      "types": "./dist/requests/orders/customFields/index.d.ts",
+      "default": "./dist/requests/orders/customFields/index.js"
+    },
+    "./requests/orders/customFields/types": {
+      "types": "./dist/requests/orders/customFields/types.d.ts",
+      "default": "./dist/requests/orders/customFields/types.js"
+    },
+    "./requests/orders/fulfillments/index": {
+      "types": "./dist/requests/orders/fulfillments/index.d.ts",
+      "default": "./dist/requests/orders/fulfillments/index.js"
+    },
+    "./requests/orders/fulfillments/types": {
+      "types": "./dist/requests/orders/fulfillments/types.d.ts",
+      "default": "./dist/requests/orders/fulfillments/types.js"
+    },
+    "./requests/orders/shipments/index": {
+      "types": "./dist/requests/orders/shipments/index.d.ts",
+      "default": "./dist/requests/orders/shipments/index.js"
+    },
+    "./requests/orders/shipments/types": {
+      "types": "./dist/requests/orders/shipments/types.d.ts",
+      "default": "./dist/requests/orders/shipments/types.js"
+    },
+    "./requests/orders/shippingRates/index": {
+      "types": "./dist/requests/orders/shippingRates/index.d.ts",
+      "default": "./dist/requests/orders/shippingRates/index.js"
+    },
+    "./requests/orders/shippingRates/types": {
+      "types": "./dist/requests/orders/shippingRates/types.d.ts",
+      "default": "./dist/requests/orders/shippingRates/types.js"
+    },
+    "./requests/products/attributes/index": {
+      "types": "./dist/requests/products/attributes/index.d.ts",
+      "default": "./dist/requests/products/attributes/index.js"
+    },
+    "./requests/products/attributes/types": {
+      "types": "./dist/requests/products/attributes/types.d.ts",
+      "default": "./dist/requests/products/attributes/types.js"
+    },
+    "./requests/products/bulkUpload/index": {
+      "types": "./dist/requests/products/bulkUpload/index.d.ts",
+      "default": "./dist/requests/products/bulkUpload/index.js"
+    },
+    "./requests/products/bulkUpload/types": {
+      "types": "./dist/requests/products/bulkUpload/types.d.ts",
+      "default": "./dist/requests/products/bulkUpload/types.js"
+    },
+    "./requests/products/bundleComponents/index": {
+      "types": "./dist/requests/products/bundleComponents/index.d.ts",
+      "default": "./dist/requests/products/bundleComponents/index.js"
+    },
+    "./requests/products/bundleComponents/types": {
+      "types": "./dist/requests/products/bundleComponents/types.d.ts",
+      "default": "./dist/requests/products/bundleComponents/types.js"
+    },
+    "./requests/products/children/index": {
+      "types": "./dist/requests/products/children/index.d.ts",
+      "default": "./dist/requests/products/children/index.js"
+    },
+    "./requests/products/children/types": {
+      "types": "./dist/requests/products/children/types.d.ts",
+      "default": "./dist/requests/products/children/types.js"
+    },
+    "./requests/products/dcQuantities/index": {
+      "types": "./dist/requests/products/dcQuantities/index.d.ts",
+      "default": "./dist/requests/products/dcQuantities/index.js"
+    },
+    "./requests/products/dcQuantities/types": {
+      "types": "./dist/requests/products/dcQuantities/types.d.ts",
+      "default": "./dist/requests/products/dcQuantities/types.js"
+    },
+    "./requests/products/images/index": {
+      "types": "./dist/requests/products/images/index.d.ts",
+      "default": "./dist/requests/products/images/index.js"
+    },
+    "./requests/products/images/types": {
+      "types": "./dist/requests/products/images/types.d.ts",
+      "default": "./dist/requests/products/images/types.js"
+    },
+    "./requests/products/labels/index": {
+      "types": "./dist/requests/products/labels/index.d.ts",
+      "default": "./dist/requests/products/labels/index.js"
+    },
+    "./requests/products/labels/types": {
+      "types": "./dist/requests/products/labels/types.d.ts",
+      "default": "./dist/requests/products/labels/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "channeladvisor",
+    "marketplace",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "luxon": "^3.7.2"
+  },
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-channel-advisor"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.7.1"
+  }
+}

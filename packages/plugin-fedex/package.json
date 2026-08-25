@@ -1,0 +1,137 @@
+{
+  "name": "@dianemo/plugin-fedex",
+  "version": "1.0.0",
+  "description": "FedEx plugin \u2014 shipping, rates, tracking, pickups, and address validation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/addressValidation": {
+      "types": "./dist/requests/addressValidation/index.d.ts",
+      "default": "./dist/requests/addressValidation/index.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/packageTracking": {
+      "types": "./dist/requests/packageTracking/index.d.ts",
+      "default": "./dist/requests/packageTracking/index.js"
+    },
+    "./requests/pickupRequest": {
+      "types": "./dist/requests/pickupRequest/index.d.ts",
+      "default": "./dist/requests/pickupRequest/index.js"
+    },
+    "./requests/purchaser": {
+      "types": "./dist/requests/purchaser/index.d.ts",
+      "default": "./dist/requests/purchaser/index.js"
+    },
+    "./requests/ratesAndTransitTimes": {
+      "types": "./dist/requests/ratesAndTransitTimes/index.d.ts",
+      "default": "./dist/requests/ratesAndTransitTimes/index.js"
+    },
+    "./requests/shipping": {
+      "types": "./dist/requests/shipping/index.d.ts",
+      "default": "./dist/requests/shipping/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/addressValidation/index": {
+      "types": "./dist/requests/addressValidation/index.d.ts",
+      "default": "./dist/requests/addressValidation/index.js"
+    },
+    "./requests/addressValidation/types": {
+      "types": "./dist/requests/addressValidation/types.d.ts",
+      "default": "./dist/requests/addressValidation/types.js"
+    },
+    "./requests/packageTracking/index": {
+      "types": "./dist/requests/packageTracking/index.d.ts",
+      "default": "./dist/requests/packageTracking/index.js"
+    },
+    "./requests/packageTracking/types": {
+      "types": "./dist/requests/packageTracking/types.d.ts",
+      "default": "./dist/requests/packageTracking/types.js"
+    },
+    "./requests/pickupRequest/index": {
+      "types": "./dist/requests/pickupRequest/index.d.ts",
+      "default": "./dist/requests/pickupRequest/index.js"
+    },
+    "./requests/pickupRequest/types": {
+      "types": "./dist/requests/pickupRequest/types.d.ts",
+      "default": "./dist/requests/pickupRequest/types.js"
+    },
+    "./requests/purchaser/index": {
+      "types": "./dist/requests/purchaser/index.d.ts",
+      "default": "./dist/requests/purchaser/index.js"
+    },
+    "./requests/purchaser/types": {
+      "types": "./dist/requests/purchaser/types.d.ts",
+      "default": "./dist/requests/purchaser/types.js"
+    },
+    "./requests/ratesAndTransitTimes/index": {
+      "types": "./dist/requests/ratesAndTransitTimes/index.d.ts",
+      "default": "./dist/requests/ratesAndTransitTimes/index.js"
+    },
+    "./requests/ratesAndTransitTimes/types": {
+      "types": "./dist/requests/ratesAndTransitTimes/types.d.ts",
+      "default": "./dist/requests/ratesAndTransitTimes/types.js"
+    },
+    "./requests/shipping/index": {
+      "types": "./dist/requests/shipping/index.d.ts",
+      "default": "./dist/requests/shipping/index.js"
+    },
+    "./requests/shipping/types": {
+      "types": "./dist/requests/shipping/types.d.ts",
+      "default": "./dist/requests/shipping/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "fedex",
+    "shipping",
+    "carrier",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-fedex"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

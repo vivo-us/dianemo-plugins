@@ -1,0 +1,157 @@
+{
+  "name": "@dianemo/plugin-extensiv",
+  "version": "1.0.0",
+  "description": "Extensiv (3PL Central) plugin — multi-warehouse inventory and orders",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/customers": {
+      "types": "./dist/requests/customers/index.d.ts",
+      "default": "./dist/requests/customers/index.js"
+    },
+    "./requests/facilities": {
+      "types": "./dist/requests/facilities/index.d.ts",
+      "default": "./dist/requests/facilities/index.js"
+    },
+    "./requests/files": {
+      "types": "./dist/requests/files/index.d.ts",
+      "default": "./dist/requests/files/index.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/inventory": {
+      "types": "./dist/requests/inventory/index.d.ts",
+      "default": "./dist/requests/inventory/index.js"
+    },
+    "./requests/items": {
+      "types": "./dist/requests/items/index.d.ts",
+      "default": "./dist/requests/items/index.js"
+    },
+    "./requests/orders": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/purchaseOrders": {
+      "types": "./dist/requests/purchaseOrders/index.d.ts",
+      "default": "./dist/requests/purchaseOrders/index.js"
+    },
+    "./requests/receivers": {
+      "types": "./dist/requests/receivers/index.d.ts",
+      "default": "./dist/requests/receivers/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/customers/index": {
+      "types": "./dist/requests/customers/index.d.ts",
+      "default": "./dist/requests/customers/index.js"
+    },
+    "./requests/customers/types": {
+      "types": "./dist/requests/customers/types.d.ts",
+      "default": "./dist/requests/customers/types.js"
+    },
+    "./requests/facilities/index": {
+      "types": "./dist/requests/facilities/index.d.ts",
+      "default": "./dist/requests/facilities/index.js"
+    },
+    "./requests/files/index": {
+      "types": "./dist/requests/files/index.d.ts",
+      "default": "./dist/requests/files/index.js"
+    },
+    "./requests/files/types": {
+      "types": "./dist/requests/files/types.d.ts",
+      "default": "./dist/requests/files/types.js"
+    },
+    "./requests/inventory/index": {
+      "types": "./dist/requests/inventory/index.d.ts",
+      "default": "./dist/requests/inventory/index.js"
+    },
+    "./requests/inventory/types": {
+      "types": "./dist/requests/inventory/types.d.ts",
+      "default": "./dist/requests/inventory/types.js"
+    },
+    "./requests/items/index": {
+      "types": "./dist/requests/items/index.d.ts",
+      "default": "./dist/requests/items/index.js"
+    },
+    "./requests/items/types": {
+      "types": "./dist/requests/items/types.d.ts",
+      "default": "./dist/requests/items/types.js"
+    },
+    "./requests/orders/index": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/orders/types": {
+      "types": "./dist/requests/orders/types.d.ts",
+      "default": "./dist/requests/orders/types.js"
+    },
+    "./requests/purchaseOrders/index": {
+      "types": "./dist/requests/purchaseOrders/index.d.ts",
+      "default": "./dist/requests/purchaseOrders/index.js"
+    },
+    "./requests/purchaseOrders/types": {
+      "types": "./dist/requests/purchaseOrders/types.d.ts",
+      "default": "./dist/requests/purchaseOrders/types.js"
+    },
+    "./requests/receivers/index": {
+      "types": "./dist/requests/receivers/index.d.ts",
+      "default": "./dist/requests/receivers/index.js"
+    },
+    "./requests/receivers/types": {
+      "types": "./dist/requests/receivers/types.d.ts",
+      "default": "./dist/requests/receivers/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "extensiv",
+    "3pl-central",
+    "wms",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-extensiv"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

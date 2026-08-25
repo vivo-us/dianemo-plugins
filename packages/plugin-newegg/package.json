@@ -1,0 +1,128 @@
+{
+  "name": "@dianemo/plugin-newegg",
+  "version": "1.0.0",
+  "description": "Newegg plugin — Newegg and Newegg Business marketplaces",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/feeds": {
+      "types": "./dist/requests/feeds/index.d.ts",
+      "default": "./dist/requests/feeds/index.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/inventory": {
+      "types": "./dist/requests/inventory/index.d.ts",
+      "default": "./dist/requests/inventory/index.js"
+    },
+    "./requests/orders": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/pricing": {
+      "types": "./dist/requests/pricing/index.d.ts",
+      "default": "./dist/requests/pricing/index.js"
+    },
+    "./requests/returns": {
+      "types": "./dist/requests/returns/index.d.ts",
+      "default": "./dist/requests/returns/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/utils": {
+      "types": "./dist/requests/utils.d.ts",
+      "default": "./dist/requests/utils.js"
+    },
+    "./requests/feeds/index": {
+      "types": "./dist/requests/feeds/index.d.ts",
+      "default": "./dist/requests/feeds/index.js"
+    },
+    "./requests/feeds/types": {
+      "types": "./dist/requests/feeds/types.d.ts",
+      "default": "./dist/requests/feeds/types.js"
+    },
+    "./requests/inventory/index": {
+      "types": "./dist/requests/inventory/index.d.ts",
+      "default": "./dist/requests/inventory/index.js"
+    },
+    "./requests/inventory/types": {
+      "types": "./dist/requests/inventory/types.d.ts",
+      "default": "./dist/requests/inventory/types.js"
+    },
+    "./requests/orders/index": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/orders/types": {
+      "types": "./dist/requests/orders/types.d.ts",
+      "default": "./dist/requests/orders/types.js"
+    },
+    "./requests/pricing/index": {
+      "types": "./dist/requests/pricing/index.d.ts",
+      "default": "./dist/requests/pricing/index.js"
+    },
+    "./requests/pricing/types": {
+      "types": "./dist/requests/pricing/types.d.ts",
+      "default": "./dist/requests/pricing/types.js"
+    },
+    "./requests/returns/index": {
+      "types": "./dist/requests/returns/index.d.ts",
+      "default": "./dist/requests/returns/index.js"
+    },
+    "./requests/returns/types": {
+      "types": "./dist/requests/returns/types.d.ts",
+      "default": "./dist/requests/returns/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "newegg",
+    "marketplace",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-newegg"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

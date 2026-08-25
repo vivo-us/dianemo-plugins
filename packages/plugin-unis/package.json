@@ -1,0 +1,101 @@
+{
+  "name": "@dianemo/plugin-unis",
+  "version": "1.0.0",
+  "description": "UNIS plugin — warehouse receipts and outbound orders",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/inboundOrders": {
+      "types": "./dist/requests/inboundOrders/index.d.ts",
+      "default": "./dist/requests/inboundOrders/index.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/outboundOrders": {
+      "types": "./dist/requests/outboundOrders/index.d.ts",
+      "default": "./dist/requests/outboundOrders/index.js"
+    },
+    "./requests/receipts": {
+      "types": "./dist/requests/receipts/index.d.ts",
+      "default": "./dist/requests/receipts/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/inboundOrders/index": {
+      "types": "./dist/requests/inboundOrders/index.d.ts",
+      "default": "./dist/requests/inboundOrders/index.js"
+    },
+    "./requests/inboundOrders/types": {
+      "types": "./dist/requests/inboundOrders/types.d.ts",
+      "default": "./dist/requests/inboundOrders/types.js"
+    },
+    "./requests/outboundOrders/index": {
+      "types": "./dist/requests/outboundOrders/index.d.ts",
+      "default": "./dist/requests/outboundOrders/index.js"
+    },
+    "./requests/outboundOrders/types": {
+      "types": "./dist/requests/outboundOrders/types.d.ts",
+      "default": "./dist/requests/outboundOrders/types.js"
+    },
+    "./requests/receipts/index": {
+      "types": "./dist/requests/receipts/index.d.ts",
+      "default": "./dist/requests/receipts/index.js"
+    },
+    "./requests/receipts/types": {
+      "types": "./dist/requests/receipts/types.d.ts",
+      "default": "./dist/requests/receipts/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "unis",
+    "3pl",
+    "wms",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-unis"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

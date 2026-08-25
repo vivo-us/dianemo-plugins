@@ -1,0 +1,236 @@
+{
+  "name": "@dianemo/plugin-amazon-spapi",
+  "version": "1.0.0",
+  "description": "Amazon Selling Partner API plugin — multi-region, multi-marketplace, with per-region rate limits",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./requests": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/auth": {
+      "types": "./dist/requests/auth/index.d.ts",
+      "default": "./dist/requests/auth/index.js"
+    },
+    "./requests/clientName": {
+      "types": "./dist/requests/clientName.d.ts",
+      "default": "./dist/requests/clientName.js"
+    },
+    "./requests/fba": {
+      "types": "./dist/requests/fba/index.d.ts",
+      "default": "./dist/requests/fba/index.js"
+    },
+    "./requests/feeds": {
+      "types": "./dist/requests/feeds/index.d.ts",
+      "default": "./dist/requests/feeds/index.js"
+    },
+    "./requests/financial": {
+      "types": "./dist/requests/financial/index.d.ts",
+      "default": "./dist/requests/financial/index.js"
+    },
+    "./requests/handleSpapiRequest": {
+      "types": "./dist/requests/handleSpapiRequest.d.ts",
+      "default": "./dist/requests/handleSpapiRequest.js"
+    },
+    "./requests/index": {
+      "types": "./dist/requests/index.d.ts",
+      "default": "./dist/requests/index.js"
+    },
+    "./requests/listings": {
+      "types": "./dist/requests/listings/index.d.ts",
+      "default": "./dist/requests/listings/index.js"
+    },
+    "./requests/orders": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/productTypes": {
+      "types": "./dist/requests/productTypes/index.d.ts",
+      "default": "./dist/requests/productTypes/index.js"
+    },
+    "./requests/reports": {
+      "types": "./dist/requests/reports/index.d.ts",
+      "default": "./dist/requests/reports/index.js"
+    },
+    "./requests/sellers": {
+      "types": "./dist/requests/sellers/index.d.ts",
+      "default": "./dist/requests/sellers/index.js"
+    },
+    "./requests/shipping": {
+      "types": "./dist/requests/shipping/index.d.ts",
+      "default": "./dist/requests/shipping/index.js"
+    },
+    "./requests/supplySource": {
+      "types": "./dist/requests/supplySource/index.d.ts",
+      "default": "./dist/requests/supplySource/index.js"
+    },
+    "./requests/types": {
+      "types": "./dist/requests/types.d.ts",
+      "default": "./dist/requests/types.js"
+    },
+    "./requests/auth/index": {
+      "types": "./dist/requests/auth/index.d.ts",
+      "default": "./dist/requests/auth/index.js"
+    },
+    "./requests/auth/types": {
+      "types": "./dist/requests/auth/types.d.ts",
+      "default": "./dist/requests/auth/types.js"
+    },
+    "./requests/fba/index": {
+      "types": "./dist/requests/fba/index.d.ts",
+      "default": "./dist/requests/fba/index.js"
+    },
+    "./requests/fba/types": {
+      "types": "./dist/requests/fba/types.d.ts",
+      "default": "./dist/requests/fba/types.js"
+    },
+    "./requests/feeds/index": {
+      "types": "./dist/requests/feeds/index.d.ts",
+      "default": "./dist/requests/feeds/index.js"
+    },
+    "./requests/feeds/types": {
+      "types": "./dist/requests/feeds/types.d.ts",
+      "default": "./dist/requests/feeds/types.js"
+    },
+    "./requests/financial/index": {
+      "types": "./dist/requests/financial/index.d.ts",
+      "default": "./dist/requests/financial/index.js"
+    },
+    "./requests/financial/types": {
+      "types": "./dist/requests/financial/types.d.ts",
+      "default": "./dist/requests/financial/types.js"
+    },
+    "./requests/listings/index": {
+      "types": "./dist/requests/listings/index.d.ts",
+      "default": "./dist/requests/listings/index.js"
+    },
+    "./requests/listings/types": {
+      "types": "./dist/requests/listings/types.d.ts",
+      "default": "./dist/requests/listings/types.js"
+    },
+    "./requests/orders/index": {
+      "types": "./dist/requests/orders/index.d.ts",
+      "default": "./dist/requests/orders/index.js"
+    },
+    "./requests/orders/types": {
+      "types": "./dist/requests/orders/types.d.ts",
+      "default": "./dist/requests/orders/types.js"
+    },
+    "./requests/productTypes/index": {
+      "types": "./dist/requests/productTypes/index.d.ts",
+      "default": "./dist/requests/productTypes/index.js"
+    },
+    "./requests/productTypes/types": {
+      "types": "./dist/requests/productTypes/types.d.ts",
+      "default": "./dist/requests/productTypes/types.js"
+    },
+    "./requests/reports/index": {
+      "types": "./dist/requests/reports/index.d.ts",
+      "default": "./dist/requests/reports/index.js"
+    },
+    "./requests/reports/types": {
+      "types": "./dist/requests/reports/types.d.ts",
+      "default": "./dist/requests/reports/types.js"
+    },
+    "./requests/sellers/index": {
+      "types": "./dist/requests/sellers/index.d.ts",
+      "default": "./dist/requests/sellers/index.js"
+    },
+    "./requests/sellers/types": {
+      "types": "./dist/requests/sellers/types.d.ts",
+      "default": "./dist/requests/sellers/types.js"
+    },
+    "./requests/shipping/index": {
+      "types": "./dist/requests/shipping/index.d.ts",
+      "default": "./dist/requests/shipping/index.js"
+    },
+    "./requests/shipping/types": {
+      "types": "./dist/requests/shipping/types.d.ts",
+      "default": "./dist/requests/shipping/types.js"
+    },
+    "./requests/supplySource/index": {
+      "types": "./dist/requests/supplySource/index.d.ts",
+      "default": "./dist/requests/supplySource/index.js"
+    },
+    "./requests/supplySource/types": {
+      "types": "./dist/requests/supplySource/types.d.ts",
+      "default": "./dist/requests/supplySource/types.js"
+    },
+    "./requests/fullfillments/inbound/v0": {
+      "types": "./dist/requests/fullfillments/inbound/v0/index.d.ts",
+      "default": "./dist/requests/fullfillments/inbound/v0/index.js"
+    },
+    "./requests/fullfillments/inbound/v2024-03-20": {
+      "types": "./dist/requests/fullfillments/inbound/v2024-03-20/index.d.ts",
+      "default": "./dist/requests/fullfillments/inbound/v2024-03-20/index.js"
+    },
+    "./requests/fullfillments/inbound/v0/index": {
+      "types": "./dist/requests/fullfillments/inbound/v0/index.d.ts",
+      "default": "./dist/requests/fullfillments/inbound/v0/index.js"
+    },
+    "./requests/fullfillments/inbound/v0/types": {
+      "types": "./dist/requests/fullfillments/inbound/v0/types.d.ts",
+      "default": "./dist/requests/fullfillments/inbound/v0/types.js"
+    },
+    "./requests/fullfillments/inbound/v2024-03-20/index": {
+      "types": "./dist/requests/fullfillments/inbound/v2024-03-20/index.d.ts",
+      "default": "./dist/requests/fullfillments/inbound/v2024-03-20/index.js"
+    },
+    "./requests/fullfillments/inbound/v2024-03-20/types": {
+      "types": "./dist/requests/fullfillments/inbound/v2024-03-20/types.d.ts",
+      "default": "./dist/requests/fullfillments/inbound/v2024-03-20/types.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "dist",
+    "docs",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "amazon",
+    "sp-api",
+    "marketplace",
+    "fba",
+    "dianemo",
+    "dianemo-plugin",
+    "rate-limit"
+  ],
+  "author": "Aaron Leman",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "luxon": "^3.7.2"
+  },
+  "peerDependencies": {
+    "@dianemo/core": "^1.0.0",
+    "@dianemo/plugin-kit": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivo-us/dianemo-plugins.git",
+    "directory": "packages/plugin-amazon-spapi"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "axios": "^1.17.0"
+  }
+}
