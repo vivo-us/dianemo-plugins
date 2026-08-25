@@ -101,13 +101,22 @@ yours** — there is no pre-existing noise to filter out.
 ## 5. Build
 
 ```bash
-npm run build        # kit first, then all 21 plugins
+npm run build        # kit, then the 21 plugins in parallel
+npm run build:kit    # after a kit-only edit, this is the whole job
 ```
 
-The dependency graph is one level deep: **`@dianemo/plugin-kit` → every plugin.**
-`build` is `build:kit && build:plugins` for that reason. If you changed only one plugin,
-`npm run build -w @dianemo/plugin-<name>` is enough; if you changed `plugin-kit`,
-everything downstream needs rebuilding and `npm run build` is the safe call.
+The dependency graph is one level deep: **`@dianemo/plugin-kit` → every plugin.** If you
+changed only one plugin, `npm run build -w @dianemo/plugin-<name>` is enough; if you
+changed `plugin-kit`, everything downstream needs rebuilding and `npm run build` is the
+safe call.
+
+**Do not build with `npm run build --workspaces`.** npm does not topologically sort
+workspace scripts — it runs them alphabetically, so every plugin sorting before
+`plugin-kit` fails with `TS2307: Cannot find module '@dianemo/plugin-kit'`, and npm
+presses on through the remaining packages before exiting 2. You get a partially built
+tree and dozens of errors with one cause. `npm run build` is `scripts/build.mjs`, which
+builds the kit alone first, then the plugins in parallel, and prints every failure
+grouped by package.
 
 `@dianemo/core` is a peer dependency resolved from the registry, not built here.
 
@@ -165,7 +174,32 @@ Note `git status --short` distinguishes staged (`M `) from unstaged (` M`) — a
 Never commit `.env`. Do not sweep unrelated files into a feature commit; a formatting
 pass over a file you did not otherwise touch belongs in its own commit.
 
-## 10. Self-review against the conventions
+## 10. Version bumps for anything published
+
+```bash
+npm run check:versions                    # vs origin/master
+npm run check:versions -- --base=<ref>    # vs another branch
+```
+
+Every package here publishes independently, so its own `version` is the only thing
+telling a consumer its code moved. Nothing else in this repo notices when that is
+missed: `src/` can change while build, test, pack and README verification all pass.
+
+The check compares against the **merge base**, and only `src/**`, `tsconfig.json` and
+`package.json` demand a bump — docs, READMEs and tests ship without altering a byte a
+consumer runs, and requiring a bump for a typo would train everyone to bump reflexively.
+It also fails a version that moved _down_.
+
+Bump with npm rather than by hand, so the lockfile follows:
+
+```bash
+npm version patch --no-git-tag-version -w @dianemo/plugin-<name>
+```
+
+It compares commits, not the working tree, so it reports nothing until you have
+committed. CI runs it on every PR.
+
+## 11. Self-review against the conventions
 
 Load the `typescript-conventions` skill and read the change against it. Read it rather
 than working from memory — nothing from it is restated here on purpose, because a second
@@ -173,6 +207,38 @@ copy of the rules drifts from the first the moment either moves.
 
 If you added a plugin, load `writing-a-plugin` instead: it has a checklist of the things
 a new package must do that no amount of local correctness will catch.
+
+## What CI re-runs
+
+`.github/workflows/ci.yml` runs on every push to `master` and on every pull request. It
+is the only enforcement there is — nothing above is caught by a git hook — so treat a
+red pipeline on a fresh PR as a step you skipped, not as CI finding something clever.
+
+Three jobs. `verify` and `package` run on a clean checkout with `npm ci`; `versions`
+runs on pull requests only, checks out full history to reach the merge base, and
+installs nothing:
+
+| job        | runs                                                                  |
+| ---------- | --------------------------------------------------------------------- |
+| `verify`   | `build`, then `sort-imports:check`, `format`, `lint`, `check`, `test` |
+| `versions` | `check-version-bumps.mjs` against the PR's merge base                 |
+| `package`  | `build`, then `verify:pack`, `verify:readme`                          |
+
+Three differences from running the steps locally, each of which has produced a
+"passes here, fails there" report:
+
+- **CI builds before `check`.** Every plugin imports `@dianemo/plugin-kit`, whose
+  `types` field points into its `dist/`, so on a fresh checkout `check` cannot resolve it
+  until the kit is built. Your working tree has a `dist/` already and hides this.
+- **`npm ci` resolves the lockfile, your machine may not have.** Prettier is on a caret
+  range, so a local `format:fix` under a newer 3.x can reformat files you never touched
+  and CI will disagree. Check `npx prettier --version` against the lockfile before
+  committing unrelated formatting churn.
+- **`exports:check` is not run directly** — it rides along inside `verify:pack`, in the
+  `package` job. A stale exports map therefore fails in the second job, not the first.
+
+CI does not run `npm run exports`, `format:fix` or `sort-imports` in write mode. It only
+checks. Nothing is fixed for you.
 
 ## Commit messages
 
