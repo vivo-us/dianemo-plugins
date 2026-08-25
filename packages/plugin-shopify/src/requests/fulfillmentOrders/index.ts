@@ -1,4 +1,5 @@
 import handleGraphQLRequest from "../handleGraphQLRequest.js";
+import { RequestError } from "@dianemo/core";
 import {
   MUTATION_COST,
   OBJECT_COST,
@@ -8,6 +9,7 @@ import {
   FulfillmentOrderByOrderIdResponse,
   FulfillmentOrdersNode,
   ShopifyFulfillmentCreateConfig,
+  ShopifyFulfillmentMoveData,
 } from "./types.js";
 
 interface FulfillmentOrderFieldPages {
@@ -191,4 +193,65 @@ export const fulfill = async (
 export default {
   getOne,
   fulfill,
+};
+
+/**
+ * Moves a fulfillment order to another location.
+ *
+ * Shopify may split rather than move: when the destination cannot stock every
+ * line, it answers with `movedFulfillmentOrder` **and** a
+ * `remainingFulfillmentOrder` holding what stayed behind. A caller that reads
+ * only the first has silently lost track of the rest.
+ *
+ * `userErrors` arrives under HTTP 200 and is raised here, because a move that
+ * did not happen must not read as one that did.
+ */
+export const move = async (
+  clientName: string,
+  fulfillmentOrderId: string,
+  newLocationId: string
+): Promise<ShopifyFulfillmentMoveData["fulfillmentOrderMove"]> => {
+  const query = `mutation fulfillmentOrderMove($id: ID!, $newLocationId: ID!) {
+      fulfillmentOrderMove(id: $id, newLocationId: $newLocationId) {
+        movedFulfillmentOrder {
+          id
+          status
+        }
+        originalFulfillmentOrder {
+          id
+          status
+        }
+        remainingFulfillmentOrder {
+          id
+          status
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }`;
+  const res = await handleGraphQLRequest<ShopifyFulfillmentMoveData>(
+    clientName,
+    "SHO_0062",
+    "Failed to move Shopify fulfillment order",
+    10,
+    "shopify.fulfillmentOrders.move",
+    query,
+    { id: fulfillmentOrderId, newLocationId }
+  );
+  const move = res.data.fulfillmentOrderMove;
+  if (move.userErrors.length) {
+    throw new RequestError(
+      "SHO_0063",
+      "Shopify rejected the fulfillment order move",
+      {
+        metadata: {
+          context: `Failed to move fulfillment order ${fulfillmentOrderId} to location ${newLocationId}: ${move.userErrors.map((e) => e.message).join(", ")}`,
+          userErrors: move.userErrors,
+        },
+      }
+    );
+  }
+  return move;
 };

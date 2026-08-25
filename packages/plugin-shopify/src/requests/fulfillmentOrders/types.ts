@@ -80,3 +80,18 @@ export interface ShopifyFulfillmentCreateConfig {
   };
   message?: string;
 }
+
+interface ShopifyFulfillmentOrderRef {
+  id: string;
+  status: string;
+}
+
+export interface ShopifyFulfillmentMoveData {
+  fulfillmentOrderMove: {
+    movedFulfillmentOrder: ShopifyFulfillmentOrderRef | null;
+    originalFulfillmentOrder: ShopifyFulfillmentOrderRef | null;
+    /** Non-null when the destination could not take every line. */
+    remainingFulfillmentOrder: ShopifyFulfillmentOrderRef | null;
+    userErrors: { field: string[]; message: string }[];
+  };
+}

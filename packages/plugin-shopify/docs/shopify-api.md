@@ -6,6 +6,27 @@ published docs on **2026-08-25**; everything marked _inferred_ was not published
 and was derived from the cost rules, so it is the part to confirm against a real
 shop.
 
+## A move can split instead of moving
+
+`fulfillmentOrderMove` does not always move the whole thing. When the
+destination location cannot stock every line, Shopify moves what it can and
+answers with **both** `movedFulfillmentOrder` and a
+`remainingFulfillmentOrder` holding the rest at the original location.
+
+A caller that reads only `movedFulfillmentOrder` has silently lost track of the
+remainder. `move` returns the whole payload for that reason rather than just the
+moved order.
+
+## `userErrors` arrives under HTTP 200
+
+Shopify reports domain rejections in a `userErrors` array on the mutation
+payload, not as a transport error, so nothing below the GraphQL layer sees them.
+
+`move` raises on a non-empty `userErrors`: a move that did not happen must not
+read as one that did. `bulkToggleActivation` does **not** — its errors are
+per-location and a partial application is a legitimate result, so the array is
+returned for the caller to inspect. That difference is deliberate.
+
 ## Rate limits and the leaky bucket
 
 The GraphQL Admin API meters a shop with a leaky bucket priced in points, not in
