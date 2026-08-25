@@ -1,26 +1,135 @@
 import { WayfairGraphQLData } from "../types.js";
 
-export interface WayfairPurchaseOrderProduct {
-  partNumber: string;
-  quantity: number;
-  price: number;
+/**
+ * The dropship purchase order as `getDropshipPurchaseOrders` returns it. This is
+ * the operation Wayfair's own integrations use; `purchaseOrders` is a different
+ * root field with a much narrower shape — see
+ * docs/wayfair-api.md#getdropshippurchaseorders-is-the-order-read
+ */
+export interface WayfairAgent {
+  id: string;
+  name: string;
 }
 
-export interface WayfairPurchaseOrder {
+export interface WayfairGetOrdersParams {
+  //Max limit 25
+  limit: number;
+  hasResponse?: boolean;
+  //UTC format date string "2020-04-27 10:16:44.000000 -04:00"
+  fromDate?: string;
+  poNumbers?: string[];
+  sortOrder?: "ASC" | "DESC";
+  offset?: number;
+}
+
+export interface WayfairShippingInfo {
+  shipSpeed: WayfairShipSpeed;
+  carrierCode: string;
+  poolPointAgent: WayfairAgent | null;
+  crossDockAgent: WayfairAgent | null;
+  deliveryAgent: WayfairAgent | null;
+}
+
+export interface WayfairAddress {
+  name: string;
+  address1: string;
+  address2: string | null;
+  address3: string | null;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+  phoneNumber: string | null;
+}
+
+export interface WayfairSupplier {
+  id: string;
+  name: string;
+  shortName: string;
+  status: string;
+  websiteURL: string;
+  currency: string;
+}
+
+export interface WayfairWarehouse {
+  id: string;
+  name: string;
+  address: WayfairAddress;
+  supplier: WayfairSupplier;
+}
+
+export interface WayfairEvent {
+  id: string;
+  type: string;
+  name: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface WayfairProduct {
+  partNumber: string;
+  quantity: string;
+  price: number;
+  pieceCount: number;
+  totalCost: number;
+  name: string;
+  weight: number | null;
+  totalWeight: number;
+  estShipDate: string | null;
+  fillDate: string | null;
+  sku: string;
+  isCancelled: boolean;
+  isTscaCompliant: boolean;
+  twoDayGuaranteeDeliveryDeadline: string | null;
+  event: WayfairEvent | null;
+  customComment: string;
+}
+
+export interface WayfairBillingInfo {
+  vatNumber: string;
+}
+
+export interface WayfairOrderResponse {
+  id: number;
+  storePrefix: string | null;
   poNumber: string;
   poDate: string;
+  orderId: number;
+  supplierId: number;
+  supplierName: string;
+  supplierAddress1: string | null;
+  supplierAddress2: string | null;
+  supplierAddress3: string | null;
+  supplierCity: string | null;
+  supplierState: string | null;
+  supplierPostalCode: string;
   estimatedShipDate: string;
+  scheduledDeliveryDate: string | null;
+  deliveryMethodCode: string;
   customerName: string;
-  orderType: string;
-  products: WayfairPurchaseOrderProduct[];
+  customerAddress1: string;
+  customerAddress2: string;
+  customerCity: string;
+  customerState: string;
+  customerPostalCode: string;
+  customerCountry: string;
+  customerEmail: string;
+  salesChannelName: string;
+  orderType: string | null;
+  shippingInfo: WayfairShippingInfo;
+  packingSlipUrl: string;
+  warehouse: WayfairWarehouse;
+  products: WayfairProduct[];
+  shipTo: WayfairAddress;
+  billTo: WayfairAddress;
+  billingInfo: WayfairBillingInfo;
 }
 
-export interface WayfairPurchaseOrdersData {
-  purchaseOrders: WayfairPurchaseOrder[];
+export interface WayfairGetOrdersData {
+  getDropshipPurchaseOrders: WayfairOrderResponse[];
 }
 
-export type WayfairPurchaseOrdersResponse =
-  WayfairGraphQLData<WayfairPurchaseOrdersData>;
+export type WayfairGetOrdersResponse = WayfairGraphQLData<WayfairGetOrdersData>;
 
 export type WayfairShipSpeed =
   | "SECOND_DAY_AIR"
