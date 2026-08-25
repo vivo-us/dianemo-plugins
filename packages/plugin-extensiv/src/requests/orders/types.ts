@@ -3,6 +3,13 @@ import { ExtensivAddress } from "../types.js";
 export type OrderItemDetailOptions =
   "None" | "SavedElements" | "Allocations" | "All" | "AllocationsWithDetail";
 
+export interface UpdateOrderOptions {
+  /** Which sections the *response* carries. The request body is always whole. */
+  detail?: string;
+  /** Re-runs the customer's auto-charge rules against the updated order. */
+  recalcautocharges?: boolean;
+}
+
 export interface NewOrderData {
   CustomerIdentifier?: { Name?: string; Id: number };
   FacilityIdentifier?: { Name?: string; Id: number };
