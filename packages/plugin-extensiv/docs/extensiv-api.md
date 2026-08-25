@@ -94,6 +94,17 @@ confirmed against Extensiv** — its documentation was not found to say whether
 its cancel and delete endpoints honour the wildcard. Treat it as likely rather
 than known, and read the resource first if the answer matters.
 
+## A canceled order reports as closed
+
+`ReadOnly.Status` is a number, and a canceled order is `2` — but it also comes
+back with **`IsClosed: true`**, the same as a normally completed one. Filtering on
+`IsClosed` alone therefore treats cancellations as fulfilled work.
+
+The three values are `0` open, `1` closed, `2` canceled, exported as
+`ExtensivOrderStatus`. A canceled order additionally carries a `-CANCELED-` suffix
+on its reference number, which is a useful cross-check but not a substitute:
+read `Status`.
+
 ## PUT /orders/{id} is a whole-order replace
 
 `updateOrder` sends the entire order, not a patch. Members absent from the
