@@ -1,6 +1,6 @@
 {
   "name": "@dianemo/plugin-walmart",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Walmart Marketplace plugin — items, orders, and fulfillment",
   "type": "module",
   "main": "./dist/index.js",
