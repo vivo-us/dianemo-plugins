@@ -2,6 +2,9 @@ import handleGraphQLRequest from "../handleGraphQLRequest.js";
 import gqlString from "../utils/gqlString.js";
 import { RequestError } from "@dianemo/core";
 import {
+  AcceptOrderParams,
+  AcceptWayfairOrderResponse,
+  WayfairAcceptOrderData,
   WayfairPurchaseOrdersData,
   WayfairPurchaseOrdersResponse,
 } from "./types.js";
@@ -62,5 +65,50 @@ export const getOrders = async (
             }
           }
         }`
+  );
+};
+
+/**
+ * Accepts a purchase order at the given ship speed. Wayfair answers with a feed
+ * handle rather than a result: `status` is the state of the submission, not of
+ * the acceptance, and `errors` fills in asynchronously as the feed processes.
+ */
+export const acceptOrder = async (
+  clientName: string,
+  params: AcceptOrderParams
+): Promise<AcceptWayfairOrderResponse> => {
+  return await handleGraphQLRequest<WayfairAcceptOrderData>(
+    clientName,
+    "wayfair.orders.accept",
+    "WFR_0006",
+    "Failed to accept Wayfair purchase order",
+    `mutation accept($poNumber: String!, $shipSpeed: ShipSpeed!, $lineItems: [AcceptedLineItemInput!]!) {
+      purchaseOrders {
+        accept(poNumber: $poNumber, shipSpeed: $shipSpeed, lineItems: $lineItems) {
+          id
+          handle
+          status
+          submittedAt
+          completedAt
+          itemCount
+          errorCount
+          errors {
+            key
+            message
+          }
+          completedCount
+          completed {
+            key
+            message
+          }
+          processingCount
+          processing {
+            key
+            message
+          }
+        }
+      }
+    }`,
+    { ...params }
   );
 };

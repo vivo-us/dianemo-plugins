@@ -104,6 +104,20 @@ $response->getStatusCode() != 200 || (isset($errors) && !empty($errors))
 same, and additionally refuses a missing `data` with no `errors`: it is not a
 result, and returning it only moves the failure somewhere less legible.
 
+## Mutations answer with a feed handle, not a result
+
+`acceptOrder`, `shipOrder` and `saveInventory` all return the same envelope: an
+`id`, a `handle`, a `status`, and three counted lists — `errors`, `completed`
+and `processing`.
+
+`status` reports whether the **submission** was accepted, not whether the
+acceptance, shipment or inventory write succeeded. Wayfair processes these as
+feeds, so `errorCount` and `completedCount` fill in afterwards and a response
+with `errorCount: 0` on arrival means nothing has failed _yet_.
+
+A caller that needs the outcome has to poll the handle. Treating the mutation's
+return value as confirmation is the mistake this shape invites.
+
 ## Paging defaults
 
 **Wayfair defaults `inventory` to 10 rows when no `limit` is given** — from the
