@@ -4,6 +4,32 @@ Findings about eBay's Sell Fulfillment and OAuth services that cost real time to
 establish, and that the shape of `@dianemo/plugin-ebay` depends on. Every page
 cited here was checked 2026-08-25; quoted text is verbatim from the page named.
 
+## Paging follows the opaque `next` URL
+
+`getOrders` answers with a `next` field holding a **complete URL** for the following
+page, not a cursor token to pass back as a parameter.
+
+It already encodes the filters, limit and offset of the search that produced it, and
+eBay does not document its shape as stable — so it is followed verbatim rather than
+parsed and rebuilt. Pass it as `data.next` and `getOrders` requests that URL directly.
+
+Because everything else is already baked in, `next` is exclusive with every other field
+on `GetEbayOrdersData`; combining them is refused with `EBY_0004` rather than silently
+dropping one side.
+
+```ts
+let next: string | undefined;
+do {
+  const page = await getOrders(
+    clientName,
+    { grantId },
+    next ? { next } : { limit: 50 }
+  );
+  // …
+  next = page.next;
+} while (next);
+```
+
 ## The fulfillment id is only in a header
 
 `POST /sell/fulfillment/v1/order/{orderId}/shipping_fulfillment` answers 201
