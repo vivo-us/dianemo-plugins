@@ -102,6 +102,37 @@ package models them as numeric enums — `FulfillmentOption: "0"` against
 the wire sends them. Coercing them to the enums would read as a documented
 vendor guarantee, and this is one observed response from one seller.
 
+## `international` names the platform, not the marketplace
+
+The consumer marketplace's endpoints carry `/international/` in their path and the
+business marketplace's do not — which reads backwards until you know that
+"international" is Newegg's name for the **platform** the consumer marketplace runs on,
+not a non-US region.
+
+| Operation        | Consumer marketplace                            | Business marketplace              |
+| ---------------- | ----------------------------------------------- | --------------------------------- |
+| Single-item read | `/contentmgmt/item/international/inventory`     | `/contentmgmt/item/inventory`     |
+| Batch read       | `/contentmgmt/item/international/inventorylist` | `/contentmgmt/item/inventorylist` |
+| Price read       | `/contentmgmt/item/international/price`         | —                                 |
+
+This is why each of those is a **pair of functions** rather than one function taking a
+marketplace flag: the path is not derivable from the credential, so the caller picks the
+function that matches the account it holds.
+
+## The business marketplace has no standalone inventory feed
+
+`submitInventoryFeed` sends `INVENTORY_DATA` at DocumentVersion 2.0 with per-warehouse
+quantities. The business marketplace's domestic platform does not accept that feed at
+all, so `submitBusinessInventoryFeed` sends `INVENTORY_AND_PRICE_DATA` at DocumentVersion
+1.0 instead, omitting price so the write stays inventory-only.
+
+Two details carry real consequences:
+
+- **`Overwrite: "No"`** leaves items absent from the feed untouched. `"Yes"` would treat
+  the feed as the complete inventory and zero everything it does not mention.
+- **`Shipping: "Default"`** uses the seller's portal rate. The field is required on this
+  feed even though the write is inventory-only.
+
 ## Two feed-type vocabularies that do not line up
 
 A feed is identified two different ways depending on which endpoint is asked.

@@ -15,6 +15,7 @@ declare module "@dianemo/core" {
 
 const tenThousandPerHourEndpoints = [
   "getItemInventory",
+  "getBatchItemInventory",
   "updateItemInventory",
   "getItemPricing",
   "updateItemPricing",
