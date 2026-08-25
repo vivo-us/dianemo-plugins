@@ -28,6 +28,7 @@ A caller composes them with `handler.use(fedex, ups)` and gets
 | `typescript-conventions` | Style within a file — size, layout, error codes, comments, and where a finding is written up |
 | `writing-a-plugin`       | Adding a package for a new API                                                               |
 | `pre-commit-checks`      | The ordered checks before committing or publishing                                           |
+| `pull-requests`          | Opening a PR, its title and body, and keeping it current as the branch moves                 |
 
 Load them rather than working from this file — they are the source of truth and they
 change.
@@ -35,13 +36,14 @@ change.
 ## Commands
 
 ```bash
-npm run build          # plugin-kit first, then all 21 plugins
+npm run build          # plugin-kit, then the 21 plugins in parallel
 npm test               # 264 tests (vitest run --typecheck)
 npm run check          # tsc --noEmit, every workspace
 npm run lint
 npm run format:fix     # then sort-imports — order matters
 npm run sort-imports
 npm run exports        # regenerate exports maps from files on disk
+npm run check:versions # published packages changed without a version bump
 npm run verify:pack    # packs and installs tarballs; needs a fresh build
 npm run verify:readme  # compiles every README example; needs a fresh build
 ```
@@ -49,6 +51,12 @@ npm run verify:readme  # compiles every README example; needs a fresh build
 Two ordering constraints that have both caused real confusion:
 `format:fix` before `sort-imports` (the sorter orders by line length), and `build`
 before either verify script (both read `dist/`).
+
+`build` is `scripts/build.mjs`, not an npm workspace loop: **npm does not
+topologically sort `run --workspaces`.** It runs alphabetically, so every plugin
+sorting before `plugin-kit` compiled against a dist that did not exist yet. The script
+builds the kit alone, then the plugins in parallel, and reports every failure rather
+than the first.
 
 ## The four repo-wide tests
 

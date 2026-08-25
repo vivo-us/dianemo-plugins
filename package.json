@@ -11,7 +11,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "npm run build:kit && npm run build:plugins",
+    "build": "node scripts/build.mjs",
     "check": "npm run check --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
     "lint": "eslint packages",
@@ -19,11 +19,11 @@
     "format:fix": "prettier --write \"packages/*/{src,test}/**/*.ts\" \"test/**/*.ts\" \"scripts/*.mjs\" \"docs/*.md\" \"packages/*/docs/*.md\" \"packages/*/README.md\" README.md CLAUDE.md \".claude/skills/**/*.md\"",
     "test": "vitest run --typecheck",
     "build:kit": "npm run build -w @dianemo/plugin-kit",
-    "build:plugins": "npm run build --workspace-root=false --workspaces --if-present",
     "sort-imports": "node scripts/sort-imports.mjs --dir packages && node scripts/sort-imports.mjs --dir test",
     "sort-imports:check": "node scripts/sort-imports.mjs --check --dir packages && node scripts/sort-imports.mjs --check --dir test",
     "exports": "node scripts/generate-exports.mjs",
     "exports:check": "node scripts/generate-exports.mjs --check",
+    "check:versions": "node scripts/check-version-bumps.mjs",
     "verify:pack": "node scripts/verify-package.mjs",
     "verify:readme": "node scripts/verify-readme-examples.mjs"
   },
