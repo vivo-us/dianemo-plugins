@@ -40,6 +40,12 @@ interface LineItemsResponse {
 }
 
 export interface FulfillmentOrdersNode {
+  /** Which location Shopify expects to fulfil from. */
+  assignedLocation: {
+    location: {
+      id: string;
+    };
+  };
   id: string;
   status: FulfillmentOrderStatus;
   fulfillments: FulfillmentsResponse;

@@ -6,6 +6,27 @@ published docs on **2026-08-25**; everything marked _inferred_ was not published
 and was derived from the cost rules, so it is the part to confirm against a real
 shop.
 
+## Nested page sizes are a cost decision, and the caller may know better
+
+Shopify prices a query by the connection sizes it **requests**, and the
+single-query cap is 1,000 points on a standard plan. A Shopify Plus store gets a
+10x allowance.
+
+That difference is why the list reads here default to small nested pages —
+`getMany` at 10 line items, `getByOrderId` at 5 fulfillments, `companies.getOne`
+at 25 contacts. Those defaults fit a standard plan. They are not a claim that
+larger reads fail: a Plus store can request the same nested detail `getOne`
+returns and stay inside its own cap.
+
+So each of those three takes an optional `pages` argument that raises them. The
+default stays conservative because a plugin cannot know the plan; the caller can.
+
+**The failure mode this guards against is silence.** Asking for 10 line items on
+an order with 30 does not error — it returns 10, and a caller that pages the
+list and acts on what came back has quietly lost the rest. If you are reading a
+list and then acting per-node, either raise `pages` or re-read each node with the
+single-record function.
+
 ## A move can split instead of moving
 
 `fulfillmentOrderMove` does not always move the whole thing. When the

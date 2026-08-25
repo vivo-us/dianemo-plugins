@@ -12,7 +12,7 @@ import {
   ShopifyFulfillmentMoveData,
 } from "./types.js";
 
-interface FulfillmentOrderFieldPages {
+export interface FulfillmentOrderFieldPages {
   fulfillments: number;
   fulfillmentLineItems: number;
   lineItems: number;
@@ -53,8 +53,9 @@ const FULFILLMENT_ORDERS_PAGE_SIZE = 10;
 const fulfillmentCost = (fulfillmentLineItems: number) =>
   2 * OBJECT_COST + connectionCost(fulfillmentLineItems, 2 * OBJECT_COST);
 
+/** `assignedLocation` and its nested `location` are the two extra objects. */
 const fulfillmentOrderCost = (pages: FulfillmentOrderFieldPages) =>
-  OBJECT_COST +
+  3 * OBJECT_COST +
   connectionCost(
     pages.fulfillments,
     fulfillmentCost(pages.fulfillmentLineItems)
@@ -64,6 +65,11 @@ const fulfillmentOrderCost = (pages: FulfillmentOrderFieldPages) =>
 const fulfillmentOrderFields = (pages: FulfillmentOrderFieldPages) => `{
     id
     status
+    assignedLocation {
+      location {
+        id
+      }
+    }
     fulfillments(first: ${pages.fulfillments}) {
       edges {
         node {
@@ -122,16 +128,30 @@ export const getOne = async (clientName: string, id: string) => {
 };
 
 /** Read one with `getOne` instead where its full fulfillment history matters. */
-export const getByOrderId = async (clientName: string, orderId: string) => {
+/**
+ * `pages` raises the nested sizes. An order with more fulfillment orders, or a
+ * fulfillment order with more fulfillments, than the default page returns loses
+ * the rest silently — see docs/shopify-api.md#nested-page-sizes-are-a-cost-decision
+ */
+export const getByOrderId = async (
+  clientName: string,
+  orderId: string,
+  pages?: Partial<FulfillmentOrderFieldPages> & { fulfillmentOrders?: number }
+) => {
+  const listPages: FulfillmentOrderFieldPages = {
+    ...FULFILLMENT_ORDER_LIST_PAGES,
+    ...pages,
+  };
+  const outerPage = pages?.fulfillmentOrders ?? FULFILLMENT_ORDERS_PAGE_SIZE;
   const query = `
     query getFulfillmentData($orderId: ID!) {
       order(id: $orderId) {
         id
         name
-        fulfillmentOrders(first: ${FULFILLMENT_ORDERS_PAGE_SIZE}) {
+        fulfillmentOrders(first: ${outerPage}) {
         edges{
           node
-            ${fulfillmentOrderFields(FULFILLMENT_ORDER_LIST_PAGES)}
+            ${fulfillmentOrderFields(listPages)}
         }
 
         }
@@ -144,11 +164,7 @@ export const getByOrderId = async (clientName: string, orderId: string) => {
     clientName,
     "SHO_0045",
     "Failed to fetch Shopify fulfillment orders by order ID",
-    OBJECT_COST +
-      connectionCost(
-        FULFILLMENT_ORDERS_PAGE_SIZE,
-        fulfillmentOrderCost(FULFILLMENT_ORDER_LIST_PAGES)
-      ),
+    OBJECT_COST + connectionCost(outerPage, fulfillmentOrderCost(listPages)),
     "shopify.fulfillmentOrders.getByOrderId",
     query,
     variables
