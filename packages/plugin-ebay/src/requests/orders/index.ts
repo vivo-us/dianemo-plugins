@@ -1,4 +1,5 @@
 import { tryHandleRequest } from "@dianemo/plugin-kit";
+import { EbayRequestOptions } from "../types.js";
 import { RequestError } from "@dianemo/core";
 import {
   EbayOrder,
@@ -6,16 +7,6 @@ import {
   GetEbayOrdersData,
   GetEbayOrdersResponse,
 } from "./types.js";
-
-/**
- * Sell Fulfillment answers a user token only, and one application's credentials
- * serve every seller who authorised it, so `grantId` — not the client — is what
- * decides whose orders are read. Seed it with the refresh token
- * `exchangeAuthCodeForAccessToken` returns, via `handler.setGrantTokens`.
- */
-export interface EbayRequestOptions {
-  grantId: string;
-}
 
 export const getOrders = async (
   clientName: string,
