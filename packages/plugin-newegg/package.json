@@ -1,6 +1,6 @@
 {
   "name": "@dianemo/plugin-newegg",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Newegg plugin — Newegg and Newegg Business marketplaces",
   "type": "module",
   "main": "./dist/index.js",
@@ -37,6 +37,10 @@
     "./requests/returns": {
       "types": "./dist/requests/returns/index.d.ts",
       "default": "./dist/requests/returns/index.js"
+    },
+    "./requests/sellerManagement": {
+      "types": "./dist/requests/sellerManagement/index.d.ts",
+      "default": "./dist/requests/sellerManagement/index.js"
     },
     "./requests/types": {
       "types": "./dist/requests/types.d.ts",
@@ -85,6 +89,14 @@
     "./requests/returns/types": {
       "types": "./dist/requests/returns/types.d.ts",
       "default": "./dist/requests/returns/types.js"
+    },
+    "./requests/sellerManagement/index": {
+      "types": "./dist/requests/sellerManagement/index.d.ts",
+      "default": "./dist/requests/sellerManagement/index.js"
+    },
+    "./requests/sellerManagement/types": {
+      "types": "./dist/requests/sellerManagement/types.d.ts",
+      "default": "./dist/requests/sellerManagement/types.js"
     }
   },
   "files": [
