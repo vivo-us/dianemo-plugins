@@ -1,6 +1,6 @@
 {
   "name": "@dianemo/plugin-unis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "UNIS plugin — warehouse receipts and outbound orders",
   "type": "module",
   "main": "./dist/index.js",
